@@ -1,0 +1,286 @@
+body {
+    padding: 0;
+    margin: 0;
+    color: #333;
+    font-family: sans-serif;
+    font-size: 16px;
+}
+
+a,
+a:visited,
+a:focus {
+  color: #4184B1;
+}
+
+.cb { clear: both; }
+
+.meter {
+    height: 0;
+    width: 0;
+    display: none !important;
+}
+
+.container {
+    padding: 40px;
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+h1 {
+    display: block;
+    text-align: center;
+    margin: 0 0 50px;
+}
+
+label {
+    display: block;
+    text-align: center;
+    font-size: 18px;
+}
+
+input {
+    border: none;
+    border-bottom: 4px solid #2f343e;
+    max-width: 250px;
+    width: 100%;
+    display: block;
+    margin: 10px auto;
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 32px;
+    font-weight: 300;
+    padding: 0.25em 10px;
+    line-height: 1.5em;
+}
+
+input:focus {
+    outline: none;
+}
+
+.hsimp-results {
+    color: #666;
+    position: relative;
+    box-sizing: border-box;
+    background: #fff;
+    background: rgba(255,255,255,0.9);
+    margin: 50px 0 0;
+}
+
+.hsimp-results__time {
+    padding: 10px;
+    margin: 0 0 50px;
+    line-height: 1.25em;
+    text-align: center;
+    font-size: 2em;
+}
+
+.hsimp-results__checks {
+    margin: 0;
+    padding: 0;
+    border: 1px solid #e5e5e5;
+    border-top: none;
+}
+
+.hsimp-results__check {
+    list-style: none;
+    padding: 10px;
+    line-height: 1.25em;
+    border-top: 1px solid #e5e5e5;
+}
+
+.hsimp-time {
+    display: inline;
+    margin-left: 10px;
+}
+.hsimp-results__checks li {
+    list-style: none;
+}
+.hsimp-results__checks h2 {
+    margin-bottom: 0;
+}
+.hsimp-results__checks p {
+    margin: 0 0 5px;
+    padding: 0;
+}
+
+.hsimp-check--insecure {
+    background: #d94332;
+    color: #fff
+}
+
+.hsimp-check--warning {
+    color: #d94332
+}
+
+.hsimp-check--notice {
+    color: #ef9a21
+}
+
+.hsimp-check--achievement {
+    color: #46a34f
+}
+
+.hsimp-check__header {
+    margin: 5px 0 10px;
+    font-size: 1.2em;
+}
+
+.hsimp-check__message {
+    margin: 0
+}
+
+.hsimp-level {
+    color: #000;
+    -moz-transition: background 0.5s linear;
+    -o-transition: background 0.5s linear;
+    -webkit-transition: background 0.5s linear;
+    transition: background 0.5s linear;
+    background-color: #fff
+}
+
+.hsimp-level--bad,.hsimp-level--insecure {
+    background-color: #d94332
+}
+
+.hsimp-level--ok {
+    background-color: #ef9a21
+}
+
+.hsimp-level--good {
+    background-color: #46a34f
+}
+
+.disclaimer {
+    font-size: 14px;
+    color: #999;
+    margin-top: 50px;
+    text-align: center;
+    line-height: 20px;
+}
+
+
+
+/* Circle Meter */
+
+.circle {
+    width: 200px;
+    margin: 50px auto 0;
+}
+
+.chart {
+  position: relative;
+  display: block;
+  color: #999;
+  text-align: center;
+  margin: 0;
+}
+
+.chart figcaption {
+  padding: 50px 25px;
+  width: 100px;
+  height: 50px;
+  border: 20px solid #f8f8f8;
+  border-radius: 100px;
+  line-height: 50px;
+}
+
+.chart img {
+  position: absolute;
+  max-width: 100px;
+  max-height: 100px;
+  background: white;
+}
+/* END Container styles */
+
+/* Colors for the circles and positions for the graphics */
+.chart svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.outer {
+  fill: transparent;
+  stroke: #f8f8f8;
+  stroke-width: 20;
+  stroke-dasharray: 534;
+  transition: stroke-dashoffset 1s;
+  -webkit-animation-play-state: running;
+
+  /* firefox bug fix - won't rotate at 90deg angles */
+  -moz-transform: rotate(-89deg) translateX(-190px);
+}
+/* END Circle colors and graphic positions */
+
+
+/* Set the initial values for the animation */
+.chart[data-percent='100'] .outer {
+  stroke-dashoffset: 0;
+  -webkit-animation: show100 2s;
+  animation: show100 2s;
+  stroke: #46a34f;
+}
+
+.chart[data-percent='66'] .outer {
+  stroke-dashoffset: 180;
+  -webkit-animation: show66 2s;
+  animation: show66 2s;
+  stroke: #ef9a21;
+}
+
+.chart[data-percent='33'] .outer {
+  stroke-dashoffset: 360;
+  -webkit-animation: show33 2s;
+  animation: show33 2s;
+  stroke: #d94332;
+}
+
+.chart[data-percent='0'] .outer {
+  stroke-dashoffset: 534;
+  -webkit-animation: show0 2s;
+  animation: show0 2s;
+  stroke: #f8f8f8;
+}
+/* END set initial animation values */
+
+/* Keyframes for the initial animation */
+@keyframes show100 {
+  from {
+    stroke-dashoffset: 180;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes show66 {
+  from {
+    stroke-dashoffset: 360;
+  }
+
+  to {
+    stroke-dashoffset: 180;
+  }
+}
+
+@keyframes show33 {
+  from {
+    stroke-dashoffset: 534;
+  }
+
+  to {
+    stroke-dashoffset: 360;
+  }
+}
+
+@keyframes show0 {
+  from {
+    stroke-dashoffset: 0;
+  }
+
+  to {
+    stroke-dashoffset: 534;
+  }
+}
+/* END Keyframes for the initial animation */

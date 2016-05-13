@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta charset="utf-8">
+        <title>EZShield Secure Password Check</title>
+
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="meter"></div>
+        <div class="circle">
+            <figure class="chart" data-percent="0">
+                <figcaption></figcaption>
+                <svg width="200" height="200">
+                  <circle class="outer" cx="95" cy="95" r="85" transform="rotate(-90, 95, 95)"/>
+                </svg>
+            </figure>
+        </div>
+        <div class="container">
+            <h1>Secure Password Check</h1>
+            <div>
+                <label>Enter Your Password</label>
+                <input id="password" type="password" autofocus />
+            </div>
+            <div class="disclaimer">
+                <p>This tool is for educational purposes. This is not an exact science and the results cannot always be accurate. Your password will not be sent over the internet or stored in any way.</p>
+                <p class="footer__attrbution">Top 10,000 passwords by <a href="https://twitter.com/m8urnett" target="_blank">Mark Burnett</a></p>
+                <p class="footer__copyright">Algorithms © <a href="https://smallhadroncollider.com" target="_blank">Small Hadron Collider</a>, 2016</p>
+            </div>
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+        <script src="logic.js"></script>
+        <script>
+            jQuery(function ($) {
+                "use strict";
+                $("#password").hsimp({
+                    calculationsPerSecond: 10e9, // 10 billion
+                    good: 31557600e9, // 1 billion years
+                    ok: 31557600e2  // 100 years
+                });
+            });
+        </script>
+    </body>
+</html>
